@@ -1,0 +1,20 @@
+{
+  "name": "@chivalryii/ui-system",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@chivalryii/game-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vite": "^4.0.0"
+  }
+}

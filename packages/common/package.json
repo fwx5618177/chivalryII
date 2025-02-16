@@ -1,0 +1,16 @@
+{
+  "name": "@chivalryii/common",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "vite build --watch",
+    "test": "jest"
+  },
+  "dependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}

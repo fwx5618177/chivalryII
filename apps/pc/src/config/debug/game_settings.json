@@ -1,0 +1,30 @@
+{
+    "window": {
+        "title": "侠义江湖 - Debug",
+        "width": 900,
+        "height": 600,
+        "fullscreen": false,
+        "vsync": true
+    },
+    "graphics": {
+        "render_distance": 1000,
+        "shadow_quality": "high",
+        "particle_limit": 10000,
+        "debug_rendering": true
+    },
+    "physics": {
+        "timestep": 0.016,
+        "gravity": -9.81,
+        "debug_draw": true
+    },
+    "network": {
+        "tick_rate": 64,
+        "interpolation_delay": 0.1,
+        "debug_overlay": true
+    },
+    "logging": {
+        "level": "debug",
+        "file_output": true,
+        "console_output": true
+    }
+} 

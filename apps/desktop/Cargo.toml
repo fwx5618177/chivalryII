@@ -1,0 +1,77 @@
+[package]
+name = "desktop-client"
+version = "0.1.0"
+edition = "2021"
+description = "A cross-platform desktop client using Bevy and Vulkan"
+authors = ["Your Name <your.email@example.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+name = "desktop_client"
+
+[dependencies]
+bevy = { version = "0.12", default-features = false }
+napi = { version = "2.14.1", features = ["napi4", "async"] }
+napi-derive = "2.14.1"
+tokio = { version = "1.0", features = ["full"] }
+libc = "0.2"
+vulkano = { version = "0.35.1", optional = true }
+parking_lot = "0.12"
+log = "0.4"
+env_logger = "0.10"
+
+[features]
+default = ["dev"]
+
+# Development build with hot reload and debug tools
+dev = [
+    "bevy/bevy_asset",
+    "bevy/bevy_winit",
+    "bevy/bevy_core_pipeline",
+    "bevy/bevy_sprite",
+    "bevy/bevy_text",
+    "bevy/png",
+    "vulkano",
+]
+
+# Debug build with minimal features for testing
+debug = [
+    "bevy/bevy_asset",
+    "bevy/bevy_winit",
+    "bevy/bevy_core_pipeline",
+]
+
+# Pre-release build with most features
+pre = [
+    "bevy/bevy_gltf",
+    "bevy/bevy_pbr",
+    "bevy/bevy_scene",
+    "bevy/bevy_winit",
+    "vulkano",
+]
+
+# Release build with minimal features for production
+release = [
+    "bevy/bevy_render",
+    "bevy/bevy_core_pipeline",
+    "bevy/bevy_winit",
+    "vulkano",
+]
+
+# Optional Vulkan support
+vulkan = ["vulkano"]
+
+[build-dependencies]
+cc = "1.0"
+napi-build = "2.0"
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[profile.release]
+opt-level = 3
+debug = false
+lto = true
+codegen-units = 1
+strip = true

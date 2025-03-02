@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use crate::logging::{GameLogger, LogLevel};
 
 #[derive(Debug, Event)]
 pub enum NetworkEvent {
@@ -21,27 +22,28 @@ pub struct NetworkState {
 
 pub fn handle_network_events(
     mut events: EventReader<NetworkEvent>,
-    mut state: ResMut<NetworkState>
+    mut state: ResMut<NetworkState>,
+    mut logger: ResMut<GameLogger>,
 ) {
     for event in events.read() {
         match event {
             NetworkEvent::ConnectionSuccess => {
                 state.is_connected = true;
-                info!("连接成功");
+                logger.log(LogLevel::Info, "网络连接成功");
             }
             NetworkEvent::ConnectionFailed => {
                 state.is_connected = false;
-                error!("连接失败");
+                logger.log(LogLevel::Error, "网络连接失败");
             }
             NetworkEvent::Disconnection => {
                 state.is_connected = false;
-                error!("断开连接");
+                logger.log(LogLevel::Error, "网络连接断开");
             }
             NetworkEvent::MessageReceived(message) => {
-                info!("收到消息: {}", message);
+                logger.log(LogLevel::Debug, &format!("收到消息: {}", message));
             }
             NetworkEvent::MessageSent(message) => {
-                info!("发送消息: {}", message);
+                logger.log(LogLevel::Debug, &format!("发送消息: {}", message));
             }
         }
     }

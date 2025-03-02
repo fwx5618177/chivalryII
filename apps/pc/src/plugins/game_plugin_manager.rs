@@ -3,6 +3,7 @@ use bevy::window::WindowMode;
 use crate::config::GameSettings;
 use crate::resources::{GameState, GlobalGameState, InputState};
 use crate::events::{input::*, window::*, network::*};
+use super::logging_plugin::LoggingPlugin;
 
 use super::core_game_plugin::CoreGamePlugin;
 
@@ -56,7 +57,10 @@ impl GamePluginManager {
         ).chain());
 
         // 添加游戏核心插件
-        app.add_plugins(CoreGamePlugin);
+        app.add_plugins((
+            LoggingPlugin::default(),
+            CoreGamePlugin,
+        ));
 
         // 设置调试标志
         if settings.graphics.debug_rendering {

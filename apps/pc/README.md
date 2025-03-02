@@ -289,7 +289,6 @@ MIT License
 
 
 @src 目前看下来，要启动这个 MMORPG，需要提前处理的是，
-0. 目录需要规范化，代码要标注是哪个文件，为什么这么写。如果有已经实现的，就要考虑删除原来实现的地方，尤其是 Config/mod.rs
 1. 全局配置资源、资源管理器、状态管理器、事件通道
 2. 全局资源中，应该包含键位绑定和输入控制，目前只写 window、network、input 的 events 就行
 3. app.add_plugins(DefaultPlugins); 是怎么做到不设置window 就能用的？

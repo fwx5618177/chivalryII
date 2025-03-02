@@ -1,5 +1,7 @@
 mod config;
 mod plugins;
+mod resources;
+mod events;
 
 use clap::{Parser, ValueEnum};
 use clap::builder::EnumValueParser;

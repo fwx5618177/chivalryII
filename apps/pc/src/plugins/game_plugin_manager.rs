@@ -5,6 +5,7 @@ use bevy::prelude::*;
 use bevy::window::{WindowEvent, WindowMode};
 
 use super::logging_plugin::LoggingPlugin;
+use super::SplashPlugin;
 
 pub struct GamePluginManager;
 
@@ -33,8 +34,9 @@ impl GamePluginManager {
             ..default()
         }));
 
-        // 添加状态
+        // 修改状态初始化
         app.init_state::<GameState>();
+        app.insert_state(GameState::Splash);
 
         // 添加资源
         app.init_resource::<GlobalGameState>()
@@ -60,6 +62,7 @@ impl GamePluginManager {
         // 添加游戏核心插件
         app.add_plugins((
             LoggingPlugin::default(),
+            SplashPlugin::default(),
         ));
 
         // 设置调试标志
@@ -68,9 +71,6 @@ impl GamePluginManager {
                 state.is_debug = true;
             }
         }
-        
-        // 设置初始状态为主菜单而不是Loading
-        app.insert_state(GameState::MainMenu);
 
         // 运行游戏
         app.run();

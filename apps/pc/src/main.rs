@@ -3,6 +3,8 @@ mod events;
 mod logging;
 mod plugins;
 mod resources;
+mod scenes;
+mod systems;
 
 use clap::builder::EnumValueParser;
 use clap::{Parser, ValueEnum};

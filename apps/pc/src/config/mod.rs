@@ -39,13 +39,6 @@ pub struct LoggingSettings {
     pub console_output: bool,
 }
 
-pub struct RenderingMode {
-    pub isometric_enabled: bool,
-    pub isometric_angle: f32,
-    pub shadow_enabled: bool,
-    pub z_scale: f32,
-}
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GameSettings {
     pub window: WindowSettings,

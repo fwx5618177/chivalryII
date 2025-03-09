@@ -8,6 +8,7 @@ pub enum GameState {
     MainMenu, // 主菜单
     InGame,   // 游戏中
     Paused,   // 暂停
+    Splash,   // 启动画面
 }
 
 // 游戏全局状态资源

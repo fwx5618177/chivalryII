@@ -2,7 +2,7 @@ use crate::config::GameSettings;
 use crate::events::{input::*, network::*, window::*};
 use crate::resources::{GameState, GlobalGameState, InputState};
 use bevy::prelude::*;
-use bevy::window::WindowMode;
+use bevy::window::{WindowEvent, WindowMode};
 
 use super::logging_plugin::LoggingPlugin;
 
@@ -42,7 +42,8 @@ impl GamePluginManager {
             .init_resource::<NetworkState>()
             .init_resource::<KeyBindings>();
 
-        //  添加事件
+        // 添加事件
+        app.add_event::<WindowEvent>();
         app.add_event::<NetworkEvent>();
 
         // 添加事件处理系统
@@ -67,6 +68,9 @@ impl GamePluginManager {
                 state.is_debug = true;
             }
         }
+        
+        // 设置初始状态为主菜单而不是Loading
+        app.insert_state(GameState::MainMenu);
 
         // 运行游戏
         app.run();

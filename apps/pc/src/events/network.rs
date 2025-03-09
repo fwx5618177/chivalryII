@@ -1,5 +1,5 @@
-use bevy::prelude::*;
 use crate::logging::{GameLogger, LogLevel};
+use bevy::prelude::*;
 
 #[derive(Debug, Event)]
 pub enum NetworkEvent {

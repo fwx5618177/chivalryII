@@ -288,25 +288,4 @@ app.add_plugins(bevy_inspector_egui::WorldInspectorPlugin::new());
 MIT License 
 
 
-@src 目前看下来，要启动这个 MMORPG，需要提前处理的是，
-1. 全局配置资源、资源管理器、状态管理器、事件通道
-2. 全局资源中，应该包含键位绑定和输入控制，目前只写 window、network、input 的 events 就行
-3. app.add_plugins(DefaultPlugins); 是怎么做到不设置window 就能用的？
-4.  下面这些可以写到 trait 里吗？
-       app.add_systems(Update, (
-            handle_input,
-            handle_window_events,
-            handle_network_events,
-        ));
-
-
-上面的这些要添加的，应该放到一个新的目录里吧？目前的目录像 plugins 等应该是不适合的，是放到 system 里，还是放到 events 里会好些？还是哪里？
-
-
-
-
-@src 我现在重新进行了拆分，先完成我说的这些吧
-
-1. @plugins 现在这种拆分才算好
-2. @core_game_plugin.rs setup 改名字，而且应该是加载图片、音频、模型、初始化实体、摄像机、场景、地图、关卡等，这里是启动后首先加载的一批
-3. 首次加载的时候，要记得图片等是有很多，不是一个。同时图片要分层的，比如背景、场景、人物、UI等。
+你现在是一个资深的工程师。目前公司需要紧急上线项目，而且项目要求极高，如果出现任何问题或者是写的质量不合格，你将会被裁员。

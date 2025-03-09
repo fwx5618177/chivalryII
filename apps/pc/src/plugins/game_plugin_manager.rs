@@ -1,26 +1,22 @@
+use crate::config::GameSettings;
+use crate::events::{input::*, network::*, window::*};
+use crate::resources::{GameState, GlobalGameState, InputState};
 use bevy::prelude::*;
 use bevy::window::WindowMode;
-use crate::config::GameSettings;
-use crate::resources::{GameState, GlobalGameState, InputState};
-use crate::events::{input::*, window::*, network::*};
-use super::logging_plugin::LoggingPlugin;
 
-use super::core_game_plugin::CoreGamePlugin;
+use super::logging_plugin::LoggingPlugin;
 
 pub struct GamePluginManager;
 
 impl GamePluginManager {
     pub fn run(settings: &GameSettings) {
         let mut app = App::new();
-        
+
         // 添加基础插件组
         app.add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
                 title: settings.window.title.clone(),
-                resolution: (
-                    settings.window.width as f32,
-                    settings.window.height as f32
-                ).into(),
+                resolution: (settings.window.width as f32, settings.window.height as f32).into(),
                 present_mode: if settings.window.vsync {
                     bevy::window::PresentMode::AutoVsync
                 } else {
@@ -42,24 +38,27 @@ impl GamePluginManager {
 
         // 添加资源
         app.init_resource::<GlobalGameState>()
-        .init_resource::<InputState>()
-        .init_resource::<NetworkState>()
-        .init_resource::<KeyBindings>();
+            .init_resource::<InputState>()
+            .init_resource::<NetworkState>()
+            .init_resource::<KeyBindings>();
 
         //  添加事件
         app.add_event::<NetworkEvent>();
 
         // 添加事件处理系统
-        app.add_systems(Update, (
-            handle_window_events,
-            handle_input_events,
-            handle_network_events,
-        ).chain());
+        app.add_systems(
+            Update,
+            (
+                handle_window_events,
+                handle_input_events,
+                handle_network_events,
+            )
+                .chain(),
+        );
 
         // 添加游戏核心插件
         app.add_plugins((
             LoggingPlugin::default(),
-            CoreGamePlugin,
         ));
 
         // 设置调试标志
@@ -73,4 +72,3 @@ impl GamePluginManager {
         app.run();
     }
 }
-

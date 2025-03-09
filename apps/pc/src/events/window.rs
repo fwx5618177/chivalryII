@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy::window::{WindowMode, MonitorSelection};
+use bevy::window::{MonitorSelection, WindowMode};
 
 pub fn handle_window_events(
     keyboard: Res<ButtonInput<KeyCode>>,
@@ -17,15 +17,16 @@ pub fn handle_window_events(
             };
         }
     }
-    
+
     // Esc 切换到窗口模式
     if keyboard.just_pressed(KeyCode::Escape) {
         window.mode = WindowMode::Windowed;
     }
 
     // Alt+F4 关闭窗口
-    if keyboard.just_pressed(KeyCode::F4) && 
-       keyboard.any_pressed([KeyCode::AltLeft, KeyCode::AltRight]) {
+    if keyboard.just_pressed(KeyCode::F4)
+        && keyboard.any_pressed([KeyCode::AltLeft, KeyCode::AltRight])
+    {
         app_exit_events.send(bevy::app::AppExit::Success);
     }
 }

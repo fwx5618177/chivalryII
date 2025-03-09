@@ -6,8 +6,8 @@ pub enum GameState {
     #[default]
     Loading, // 加载中
     MainMenu, // 主菜单
-    InGame, // 游戏中
-    Paused, // 暂停
+    InGame,   // 游戏中
+    Paused,   // 暂停
 }
 
 // 游戏全局状态资源

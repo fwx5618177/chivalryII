@@ -13,7 +13,9 @@ pub enum GameAction {
     Interact,
     OpenInventory,
     OpenMap,
-    ExitGame,   
+    ExitGame,
+    ZoomIn,
+    ZoomOut,
 }
 
 #[derive(Debug, Clone, Resource)]
@@ -34,6 +36,8 @@ impl Default for KeyBindings {
         bindings.insert(GameAction::OpenInventory, KeyCode::KeyI);
         bindings.insert(GameAction::OpenMap, KeyCode::KeyM);
         bindings.insert(GameAction::ExitGame, KeyCode::Escape);
+        bindings.insert(GameAction::ZoomIn, KeyCode::Equal);
+        bindings.insert(GameAction::ZoomOut, KeyCode::Minus);
         Self { bindings }
     }
 }

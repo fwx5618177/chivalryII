@@ -1,5 +1,5 @@
-use bevy::prelude::*;
 use crate::events::input::GameAction;
+use bevy::prelude::*;
 
 // 输入状态资源
 #[derive(Resource, Default)]
@@ -31,4 +31,3 @@ impl InputState {
         !self.active_actions.contains(&action) && self.previous_actions.contains(&action)
     }
 }
-

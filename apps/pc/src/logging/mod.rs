@@ -1,5 +1,5 @@
-mod logger;
 mod config;
+mod logger;
 
-pub use logger::*;
 pub use config::*;
+pub use logger::*;

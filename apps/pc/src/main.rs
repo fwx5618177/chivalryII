@@ -1,11 +1,12 @@
 mod config;
-mod plugins;
-mod resources;
 mod events;
 mod logging;
+mod plugins;
+mod resources;
+mod world;
 
-use clap::{Parser, ValueEnum};
 use clap::builder::EnumValueParser;
+use clap::{Parser, ValueEnum};
 use config::{ConfigManager, ConfigType};
 use plugins::GamePluginManager;
 use std::fmt;
@@ -40,7 +41,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
     let config_manager = ConfigManager::new(config_type)?;
     let settings = config_manager.get_settings();
-    
+
     GamePluginManager::run(settings);
 
     Ok(())

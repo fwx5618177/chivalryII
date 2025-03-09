@@ -1,10 +1,10 @@
+use super::config::{LogConfig, LogLevel};
 use bevy::prelude::*;
 use chrono::Local;
+use colored::*;
 use std::fs::{self, File, OpenOptions};
 use std::io::Write;
 use std::path::Path;
-use colored::*;
-use super::config::{LogLevel, LogConfig};
 
 /// 日志记录器资源
 #[derive(Resource)]
@@ -28,7 +28,7 @@ impl GameLogger {
         fs::create_dir_all(log_dir).expect("Failed to create log directory");
         let date = Local::now().format("%Y-%m-%d");
         let log_path = Path::new(log_dir).join(format!("{}.log", date));
-        
+
         OpenOptions::new()
             .create(true)
             .append(true)
@@ -38,7 +38,7 @@ impl GameLogger {
 
     pub fn log(&mut self, level: LogLevel, message: &str) {
         let timestamp = Local::now().format("%Y-%m-%d %H:%M:%S%.3f");
-        
+
         // 控制台输出
         if self.config.console_output && level <= self.config.min_console_level {
             let colored_level = match level {
@@ -47,15 +47,16 @@ impl GameLogger {
                 LogLevel::Debug => level.as_str().yellow(),
                 LogLevel::Verbose => level.as_str().blue(),
             };
-            
+
             let colored_message = match level {
                 LogLevel::Error => message.red(),
                 LogLevel::Info => message.white(),
                 LogLevel::Debug => message.yellow(),
                 LogLevel::Verbose => message.blue(),
             };
-            
-            println!("[{}] [{}] {}", 
+
+            println!(
+                "[{}] [{}] {}",
                 timestamp.to_string().white(),
                 colored_level,
                 colored_message
@@ -66,9 +67,10 @@ impl GameLogger {
         if self.config.file_output && level <= self.config.min_file_level {
             if let Some(file) = &mut self.log_file {
                 let entry = format!("[{}] [{}] {}\n", timestamp, level.as_str(), message);
-                file.write_all(entry.as_bytes()).expect("Failed to write to log file");
+                file.write_all(entry.as_bytes())
+                    .expect("Failed to write to log file");
                 file.flush().expect("Failed to flush log file");
             }
         }
     }
-} 
+}

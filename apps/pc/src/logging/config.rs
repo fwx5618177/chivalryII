@@ -31,11 +31,11 @@ impl LogLevel {
 /// 日志配置
 #[derive(Clone)]
 pub struct LogConfig {
-    pub file_output: bool,      // 是否输出到文件
-    pub console_output: bool,   // 是否输出到控制台
+    pub file_output: bool,           // 是否输出到文件
+    pub console_output: bool,        // 是否输出到控制台
     pub min_file_level: LogLevel,    // 文件记录的最低级别
     pub min_console_level: LogLevel, // 控制台输出的最低级别
-    pub log_dir: String,       // 日志文件目录
+    pub log_dir: String,             // 日志文件目录
 }
 
 impl Default for LogConfig {
@@ -44,8 +44,8 @@ impl Default for LogConfig {
             file_output: true,
             console_output: true,
             min_file_level: LogLevel::Info,
-            min_console_level: LogLevel::Info,  // 默认控制台也是 Info 级别
+            min_console_level: LogLevel::Info, // 默认控制台也是 Info 级别
             log_dir: "logs".to_string(),
         }
     }
-} 
+}

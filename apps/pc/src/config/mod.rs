@@ -1,7 +1,8 @@
+use bevy::prelude::Resource;
 use serde::{Deserialize, Serialize};
 use std::fs;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct WindowSettings {
     pub title: String,
     pub width: u32,
@@ -10,7 +11,13 @@ pub struct WindowSettings {
     pub vsync: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct SplashSettings {
+    pub title: String,
+    pub title_font_size: f32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct GraphicsSettings {
     pub render_distance: u32,
     pub shadow_quality: String,
@@ -18,34 +25,35 @@ pub struct GraphicsSettings {
     pub debug_rendering: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct PhysicsSettings {
     pub timestep: f32,
     pub gravity: f32,
     pub debug_draw: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct NetworkSettings {
     pub tick_rate: u32,
     pub interpolation_delay: f32,
     pub debug_overlay: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LoggingSettings {
     pub level: String,
     pub file_output: bool,
     pub console_output: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Resource, Clone)]
 pub struct GameSettings {
     pub window: WindowSettings,
     pub graphics: GraphicsSettings,
     pub physics: PhysicsSettings,
     pub network: NetworkSettings,
     pub logging: LoggingSettings,
+    pub splash: SplashSettings,
 }
 
 impl GameSettings {

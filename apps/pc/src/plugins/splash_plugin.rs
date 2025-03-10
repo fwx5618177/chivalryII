@@ -19,7 +19,7 @@ impl Plugin for SplashPlugin {
                     update_text_animation,
                     // debug_entities
                 )
-                .run_if(in_state(GameState::Splash)),
+                    .run_if(in_state(GameState::Splash)),
             );
     }
 }

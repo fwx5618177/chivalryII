@@ -26,5 +26,10 @@
         "level": "info",
         "file_output": true,
         "console_output": false
+    },
+    "splash": {
+        "title":"侠义江湖 - Dev",
+        "title_font_size": 48,
+        "title_font_color": "#FF0000"
     }
 } 

@@ -42,7 +42,10 @@ impl GamePluginManager {
         app.init_resource::<GlobalGameState>()
             .init_resource::<InputState>()
             .init_resource::<NetworkState>()
-            .init_resource::<KeyBindings>();
+            .init_resource::<KeyBindings>()
+            .insert_resource(settings.clone());
+
+        
 
         // 添加事件
         app.add_event::<WindowEvent>();
@@ -60,10 +63,7 @@ impl GamePluginManager {
         );
 
         // 添加游戏核心插件
-        app.add_plugins((
-            LoggingPlugin::default(),
-            SplashPlugin::default(),
-        ));
+        app.add_plugins((LoggingPlugin::default(), SplashPlugin::default()));
 
         // 设置调试标志
         if settings.graphics.debug_rendering {

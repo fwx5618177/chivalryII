@@ -26,5 +26,10 @@
         "level": "debug",
         "file_output": true,
         "console_output": true
+    },
+    "splash": {
+        "title":"侠义江湖 - debug",
+        "title_font_size": 48,
+        "title_font_color": "#FF0000"
     }
 } 

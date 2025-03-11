@@ -4,6 +4,12 @@ use bevy::prelude::*;
 pub struct SplashBackground;
 
 #[derive(Component)]
+pub struct BackgroundFade {
+    pub fade_timer: Timer,
+    pub is_fading: bool,
+}
+
+#[derive(Component)]
 pub struct SplashText;
 
 #[derive(Component)]
@@ -22,4 +28,11 @@ pub struct UISlideState {
     pub initial_position: Vec2,
     pub target_position: Vec2,
     pub timer: Timer,
+}
+
+#[derive(Component)]
+pub struct TextFadeIn {
+    pub timer: Timer,
+    pub delay_timer: Timer,
+    pub is_fading: bool,
 }

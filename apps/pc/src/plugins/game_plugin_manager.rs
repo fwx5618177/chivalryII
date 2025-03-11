@@ -45,8 +45,6 @@ impl GamePluginManager {
             .init_resource::<KeyBindings>()
             .insert_resource(settings.clone());
 
-        
-
         // 添加事件
         app.add_event::<WindowEvent>();
         app.add_event::<NetworkEvent>();

@@ -2,18 +2,11 @@ use crate::config::GameSettings;
 
 use super::components::*;
 use super::resources::*;
-use bevy::sprite::MaterialMesh2dBundle;
-use bevy::text::cosmic_text::rustybuzz::shape;
-use bevy::text::FontFamily;
 use bevy::{prelude::*, text::FontSmoothing};
-use bevy_rapier3d::parry::shape::Shape;
-use bincode::de;
 
 pub fn setup_splash(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
-    mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<ColorMaterial>>,
     settings: Res<GameSettings>,
 ) {
     // 初始化状态
@@ -26,7 +19,26 @@ pub fn setup_splash(
             custom_size: None,
             ..default()
         },
+        Transform::from_xyz(0.0, 0.0, 0.0),
         SplashBackground,
+        BackgroundFade {
+            fade_timer: Timer::from_seconds(0.5, TimerMode::Once),
+            is_fading: false,
+        },
+    ));
+
+    commands.spawn((
+        Sprite {
+            image: asset_server.load("images/splash_bg.png"),
+            custom_size: None,
+            ..default()
+        },
+        Transform::from_xyz(2048.0, 0.0, 0.0),
+        SplashBackground,
+        BackgroundFade {
+            fade_timer: Timer::from_seconds(0.5, TimerMode::Once),
+            is_fading: false,
+        },
     ));
 
     // 相机
@@ -44,7 +56,13 @@ pub fn setup_splash(
         },
         TextLayout::new(JustifyText::Center, LineBreak::NoWrap),
         Transform::from_xyz(0.0, 100.0, 1.0)
-                .with_rotation(Quat::from_rotation_x(-0.1))  // 添加倾斜效果
-                .with_scale(Vec3::new(1.2, 1.2, 1.0))
+            .with_rotation(Quat::from_rotation_x(-0.1)) // 添加倾斜效果
+            .with_scale(Vec3::new(1.2, 1.2, 1.0)),
+        SplashText,
+        TextFadeIn {
+            timer: Timer::from_seconds(0.5, TimerMode::Once),
+            delay_timer: Timer::from_seconds(0.5, TimerMode::Once),
+            is_fading: false,
+        },
     ));
 }

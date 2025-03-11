@@ -1,7 +1,7 @@
 use crate::{
     resources::GameState,
     scenes::{debug_entities, setup_splash, SplashState},
-    systems::{update_camera_scroll, update_text_animation},
+    systems::{update_background_fade, update_camera_scroll, update_text_animation, update_text_fade},
 };
 use bevy::prelude::*;
 
@@ -16,7 +16,9 @@ impl Plugin for SplashPlugin {
                 Update,
                 (
                     update_camera_scroll,
+                    update_background_fade,
                     update_text_animation,
+                    update_text_fade,
                     // debug_entities
                 )
                     .run_if(in_state(GameState::Splash)),

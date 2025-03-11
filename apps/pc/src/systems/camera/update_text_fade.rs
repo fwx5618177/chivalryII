@@ -2,10 +2,7 @@ use bevy::{prelude::*, window::PrimaryWindow};
 
 use crate::scenes::{BackgroundFade, SplashBackground, TextFadeIn};
 
-pub fn update_text_fade(
-    time: Res<Time>,
-    mut query: Query<(&mut Text, &mut TextFadeIn)>,
-) {
+pub fn update_text_fade(time: Res<Time>, mut query: Query<(&mut Text, &mut TextFadeIn)>) {
     for (mut text, mut fade) in query.iter_mut() {
         // 先等待延迟时间
         if !fade.delay_timer.finished() {

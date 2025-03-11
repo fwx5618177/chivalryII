@@ -1,4 +1,8 @@
 use crate::config::GameSettings;
+use crate::prefabs::InputBoxBundle;
+use crate::prefabs::InputType;
+use crate::prefabs::LoginButtonBundle;
+use crate::prefabs::LoginFormBundle;
 
 use super::components::*;
 use super::resources::*;
@@ -65,4 +69,28 @@ pub fn setup_splash(
             is_fading: false,
         },
     ));
+
+    // 登陆表单
+    commands
+        .spawn(LoginFormBundle::new())
+        .with_children(|parent| {
+            parent.spawn(InputBoxBundle::new("请输入账号", InputType::Text));
+            parent.spawn(InputBoxBundle::new("请输入密码", InputType::Password));
+
+            parent
+                .spawn(LoginButtonBundle::new())
+                .with_children(|parent| {
+                    parent.spawn((
+                        Text2d::new("登陆"),
+                        TextFont {
+                            font: asset_server.load("fonts/PingFang.ttc"),
+                            font_size: 20.0,
+                            font_smoothing: FontSmoothing::None,
+                            ..default()
+                        },
+                        TextColor::from(Color::WHITE),
+                        TextLayout::new(JustifyText::Center, LineBreak::NoWrap),
+                    ));
+                });
+        });
 }

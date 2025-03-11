@@ -2,6 +2,7 @@ mod config;
 mod events;
 mod logging;
 mod plugins;
+mod prefabs;
 mod resources;
 mod scenes;
 mod systems;

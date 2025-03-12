@@ -28,7 +28,7 @@ impl LoginFormBundle {
                     top: Val::Percent(50.0),
                     bottom: Val::Auto,
                     margin: UiRect {
-                        left: Val::Px(-160.0),  // width的一半
+                        left: Val::Px(-160.0), // width的一半
                         top: Val::Px(-60.0),   // 预估高度的一半
                         ..default()
                     },

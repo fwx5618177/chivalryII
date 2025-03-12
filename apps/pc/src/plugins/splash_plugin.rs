@@ -1,4 +1,5 @@
 use crate::{
+    prefabs::handle_text_input,
     resources::GameState,
     scenes::{debug_entities, setup_splash, SplashState},
     systems::{
@@ -21,6 +22,7 @@ impl Plugin for SplashPlugin {
                     update_background_fade,
                     update_text_animation,
                     update_text_fade,
+                    handle_text_input,
                     // debug_entities
                 )
                     .run_if(in_state(GameState::Splash)),

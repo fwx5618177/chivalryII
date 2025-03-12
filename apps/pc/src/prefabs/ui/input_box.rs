@@ -7,6 +7,7 @@ pub struct InputBox {
     pub max_length: usize,
     pub value: String,
     pub input_type: InputType,
+    pub is_focused: bool,
 }
 
 #[derive(PartialEq)]
@@ -31,6 +32,7 @@ impl InputBoxBundle {
                 max_length: 32,
                 value: String::new(),
                 input_type,
+                is_focused: false,
             },
             node_bundle: NodeBundle {
                 node: Node {
